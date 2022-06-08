@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Log In--OCF Invest</title>
+  <!--
+ * @Author: Fox Blue
+ * @Date: 2021-01-27 16:26:31
+ * @LastEditTime: 2021-09-26 09:12:44
+ * @Description: Forward, no stop
+-->
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta http-equiv="Access-Control-Allow-Origin" content="*">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="format-detection" content="telephone=no">
+<link rel="icon" href="https://www.xyinves.com/favicon.ico">
+<link rel="stylesheet" href="static/css/layui.css" media="all">
+<link rel="stylesheet" href="static/css/style.css" media="all">
+<link rel="stylesheet" href="static/css/font-awesome.min.css" media="all">
+<meta name="csrf-token" content="3f7e6720d34bd8546c56324235bd59da"><script>
+    var WHAT = "";   
+    var WHATFLAG = WHAT ==="true" ? true : false;
+    var WHATAPP = "https://api.whatsapp.com/send?phone=&text=Please describe your needs and I will help you.";
+</script>
+</head>
+<body class="sub-bg">
+  <!--
+ * @Author: Fox Blue
+ * @Date: 2021-01-27 22:25:45
+ * @LastEditTime: 2021-01-27 22:29:57
+ * @Description: Forward, no stop
+-->
+<!--顶部导航-->
+<div class="header">
+    <a class="logo" href="index.html">
+      <img src="static/picture/202110132218298963.jpg" alt="OCF Invest">
+    </a>
+      <div class="float-right">
+          <a href="javascript:void(0);" class="language-icon"><img src="static/picture/earth.png" class="mr-10"><span class="language-tit">English</span><i class="layui-icon layui-icon-triangle-d"></i></a>
+      </div>
+</div>
+  <!--登录-->
+  <div class="login-box">
+      <div class="login-main">
+        <div class="login-header">Log In</div>
+        <form class="layui-form" action="">
+            <div class="login-item">
+                <div>Phone</div>           
+                <input type="number" name="number" lay-verify="" placeholder="" autocomplete="off" class="layui-input">
+            </div>  
+            <div class="login-item">
+                <div>Password</div>           
+                <input type="password" name="password" placeholder="" autocomplete="off" class="layui-input">
+            </div>
+            <button class="login-btn mt-30" lay-submit="" lay-filter="login">Log In</button>
+        </form>
+        <div class="login-footer">
+            <a class="i-forgot" href="find_password.html">Forgot Password ?</a>
+            <div class="float-right">
+                <a class="i-free" href="register.html">Free registration</a>
+            </div>
+        </div>
+    </div>
+  </div>
+  <!--
+ * @Author: Fox Blue
+ * @Date: 2021-01-27 16:50:47
+ * @LastEditTime: 2021-02-01 23:48:26
+ * @Description: Forward, no stop
+-->
+<!--切换语言-->
+<!--
+ * @Author: Fox Blue
+ * @Date: 2021-02-01 21:53:20
+ * @LastEditTime: 2021-09-20 20:28:40
+ * @Description: Forward, no stop
+-->
+<div class="down-menu">
+    <div class="down-menu-box">
+      <a href="javascript:void(0);" onclick="changelang('en-us')" class="active">English</a>
+      <a href="javascript:void(0);" onclick="changelang('india-in')">हिन्दी</a>
+  </div>
+</div>
+<script src="static/js/layui.js"></script> 
+<script>
+    //一般直接写在一个js文件中
+    layui.use(['layer', 'jquery', 'form'], function(){
+        var layer = layui.layer
+        ,$ = layui.jquery
+        ,form = layui.form;
+     
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        // var languageMap = JSON.parse(JSON.stringify('{"india-in":{"name":"\u0939\u093f\u0928\u094d\u0926\u0940","img":"\/home\/images\/icon-china.png"},"en-us":{"name":"English","img":"\/home\/images\/icon-english.png"}}')).replace(/[\\]/g,'').replace(/^\"|\"$/g,'');
+        var languageMap = JSON.parse('{"india-in":{"name":"\u0939\u093f\u0928\u094d\u0926\u0940","img":"\/home\/images\/icon-china.png"},"en-us":{"name":"English","img":"\/home\/images\/icon-english.png"}}');
+        var lang = 'en-us';
+        $('.language-tit').text(languageMap[lang].name);
+        // $('.language-icon img').attr('src',languageMap[lang].img);
+
+        window.changelang = function(lang){
+            var url = "/home/index/setlang.html";
+            $.get(url,{lang:lang},function(res){
+                // console.log(res);
+                if(res.code == 1){
+                    window.location.reload()
+                }
+            })
+        }
+        $(".language-icon").click(function(e){
+            var win = layer.open({
+                type: 1 
+                ,title: false //标题
+                ,skin:"" //layui-layer-lan:蓝色，layui-layer-molv：墨绿色，默认灰色
+                ,area: ['0px', '0px'] //宽度、高度
+                ,shade: 0.8
+                ,closeBtn: 0
+                ,offset: 'lt'
+                ,anim:5 //弹出动画
+                ,shadeClose: true //弹框出现后，允许点击其它地方关闭
+                ,maxmin: false //允许最大化
+                ,content: $(".down-menu")  //内容
+             });
+            // $(".down-menu").slideToggle();
+        });
+        $(".terms").click(function(){
+            layer.open({
+            type: 2,
+            title: "Terms",
+            shadeClose: true,
+            shade: 0.8,
+            area: ['100%', '100%'],
+            content: "/home/terms/index.html"
+            }); 
+        })
+        var InterValObj; //timer变量，控制时间
+        var count = 60; //间隔函数，1秒执行
+        var curCount;//当前剩余秒数
+        var btnsend = $("#btnSendCode");
+        //发送验证码
+        form.on('submit(send_code)', function(data){
+            if(data.field.number === ''){
+                layer.msg("Phone Must be", {time: 1800});
+                return false;
+            }
+            if(data.field.number.substr(0,1) == '0') {
+                layer.msg("Phone Must be", {time: 1800});
+                return false;
+            }
+            $.post("/home/Login/smscode.html", data.field, function (res) {         
+                if (res.code > 0) {
+                    layer.msg(res.msg, {time: 1800, icon: 1}, function () {
+                        curCount = count;
+                        btnsend.attr("disabled","true" );//设置按钮为禁用状态
+                        btnsend.addClass('layui-btn-disabled');
+                        // btnsend.addClass('btn-color-red');
+                        btnsend.addClass('layui-btn-disabled');
+                        btnsend.text(curCount + " Second recapture");
+                        InterValObj = window.setInterval(SetRemainTime, 1000); // 启动计时器timer处理函数，1秒执行一次
+                    });
+                } else {
+                    layer.msg(res.msg, {time: 1800});
+                }
+            });
+            return false;
+        });
+
+        window.SetRemainTime = function (){
+            if(curCount == 0){
+                btnsend.removeClass('layui-btn-disabled');
+                // btnsend.removeClass('btn-color-red');
+                btnsend.removeClass('layui-btn-disabled');
+                btnsend.text("Recapture");
+                window.clearInterval(InterValObj);// 停止计时器
+                btnsend.removeAttr("disabled");//移除禁用状态改为可用
+            } else{
+                curCount--;
+                btnsend.text(curCount + " Second recapture");
+            }
+        }
+
+        form.on('submit(login)', function(data){
+            if(data.field.number === ''){
+                layer.msg("Phone Must be");
+                return false;
+            }
+            if(data.field.password === ''){
+                layer.msg("Password Must be");
+                return false;
+            }
+            loading =layer.load(1, {shade: [0.1,'#fff']});
+            $.post("", data.field, function (res) {
+                layer.close(loading);
+                if (res.code > 0) {
+                    layer.msg(res.msg, {time: 1800, icon: 1}, function () {
+                    location.href = res.url;
+                    });
+                } else {
+                    layer.msg(res.msg, {time: 1800});
+                }
+            });
+            return false;
+
+        });
+
+        form.on('submit(register)', function(data){
+            if(data.field.number === ''){
+                layer.msg("Phone Must be");
+                return false;
+            }
+            if(data.field.code === ''){
+                layer.msg("Verification Code Must be");
+                return false;
+            }
+            if(data.field.password === ''){
+                layer.msg("Password Must be");
+                return false;
+            }
+            if(data.field.repassword === ''){
+                layer.msg("Repeat the Password Must be");
+                return false;
+            }
+            loading =layer.load(1, {shade: [0.1,'#fff']});
+            $.post("", data.field, function (res) {
+                layer.close(loading);
+                if (res.code > 0) {
+                    layer.msg(res.msg, {time: 1800, icon: 1}, function () {
+                    location.href = res.url;
+                    });
+                } else {
+                    layer.msg(res.msg, {time: 1800});
+                }
+            });
+            return false;
+
+        });
+
+    });
+</script>
+  
+</body>
+</html>

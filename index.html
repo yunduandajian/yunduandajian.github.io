@@ -1,495 +1,417 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-
+<html>
 <head>
-  <title>Home</title>
-  <!--meta tags -->
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="keywords" content="" />
-  <script>
-    addEventListener("load", function () {
-      setTimeout(hideURLbar, 0);
-    }, false);
-
-    function hideURLbar() {
-      window.scrollTo(0, 1);
-    }
-  </script>
-  <!--//meta tags ends here-->
-  <!--booststrap-->
-  <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all">
-  <!--//booststrap end-->
-  <!-- font-awesome icons -->
-  <link href="css/font-awesome.min.css" rel="stylesheet">
-  <!-- //font-awesome icons -->
-  <!--stylesheets-->
-  <link href="css/style.css" rel='stylesheet' type='text/css' media="all">
-  <!--//stylesheets-->
-  <link href="http://fonts.googleapis.com/css?family=Fira+Sans:400,500,600,700" rel="stylesheet">
-  <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600" rel="stylesheet">
+  <meta charset="utf-8">
+  <title>OCF Invest</title>
+  <meta name="keywords" content="OCF Invest">
+  <meta name="description" content="OCF Invest">
+  <!--
+ * @Author: Fox Blue
+ * @Date: 2021-01-27 16:26:31
+ * @LastEditTime: 2021-09-26 09:12:44
+ * @Description: Forward, no stop
+-->
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta http-equiv="Access-Control-Allow-Origin" content="*">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="format-detection" content="telephone=no">
+<link rel="icon" href="https://www.xyinves.com/favicon.ico">
+<link rel="stylesheet" href="static/css/layui.css" media="all">
+<link rel="stylesheet" href="static/css/style.css" media="all">
+<link rel="stylesheet" href="static/css/font-awesome.min.css" media="all">
+<meta name="csrf-token" content="3d0c53d15fc9f37422704632ea6596ac"><script>
+    var WHAT = "";   
+    var WHATFLAG = WHAT ==="true" ? true : false;
+    var WHATAPP = "https://api.whatsapp.com/send?phone=&text=Please describe your needs and I will help you.";
+</script>
 </head>
-
+<style>
+  .jump span{
+    display: block;
+    padding:2px;
+    min-width: 80px;
+  }
+</style>
 <body>
-  <div class="main-top" id="home">
-    <!-- header -->
-    <header>
-      <div class="container-fluid">
-        <div class="header d-md-flex justify-content-between py-3 pl-2">
-          <!-- logo -->
-          <div id="logo">
-            <h1>
-              <a href="index.html">云端搭建</a>
-            </h1>
-          </div>
-          <!-- //logo -->
-          <!-- nav -->
-          <div class="nav_main">
-            <nav>
-              <label for="drop" class="toggle">Menu</label>
-              <input type="checkbox" id="drop" />
-              <ul class="menu">
-                <li>
-                  <a href="index.html" class="active nav-style">Home</a>
-                </li>
-                <li>
-                  <a href="about.html" class="nav-style">About</a>
-                </li>
-                <li>
-                  <a href="service.html" class="nav-style">Services</a>
-                </li>
-                <li>
-                  <!-- First Tier Drop Down -->
-                  <label for="drop-2" class="toggle toogle-2 nav-style">Dropdown
-                    <span class="fa fa-angle-down" aria-hidden="true"></span>
-                  </label>
-                  <a href="#" class="nav-style">Dropdown
-                    <span class="fa fa-angle-down" aria-hidden="true"></span>
-                  </a>
-                  <input type="checkbox" id="drop-2" />
-                  <ul>
-                    <li>
-                      <a href="gallery.html" class="drop-text">Gallery</a>
-                    </li>
-                    <li>
-                      <a href="blog.html" class="drop-text">Blog</a>
-                    </li>
-                    <li>
-                      <a href="service.html" class="drop-text">Service</a>
-                    </li>
-                  </ul>
-                </li>
-                <li>
-                  <a href="contact.html" class="nav-style">Contact</a>
-                </li>
-              </ul>
-            </nav>
-          </div>
-          <!-- //nav -->
-        </div>
-      </div>
-    </header>
-    <!-- //header -->
-    <!-- banner -->
-    <div class="main-banner">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-lg-6">
-            <div class="style-banner ">
-              <h4 class="mb-2">我们为您提供最全、最放心、最可靠的出海服务</h4>
-              <p class="mt-lg-5 mt-md-4 mt-sm-4 mt-4">We provide you with the most complete,
-			  most assured and most reliable overseas services
-              </p>
-              <div class="view-buttn mt-lg-5 mt-md-4 mt-sm-4 mt-3">
-                <a href="contact.html" class="btn">Contact Us</a>
-              </div>
-            </div>
-
-          </div>
-          <div class="col-lg-6 left-banner">
-
-          </div>
-        </div>
-      </div>
+<!--顶部导航-->
+<!--
+ * @Author: Fox Blue
+ * @Date: 2021-02-01 15:05:54
+ * @LastEditTime: 2021-09-21 11:44:54
+ * @Description: Forward, no stop
+-->
+<div class="header">
+    <a class="logo" href="">
+      <img src="static/picture/202110132218298963.jpg" alt="OCF Invest">
+    </a>
+    <div class="float-right">
+            <a href="index1.html" type="button" class="layui-btn layui-btn-radius btn-yellow mr-10">Log In</a>
+            <a href="javascript:;" id="memuright"><i class="layui-icon layui-icon-set"></i></a>
     </div>
   </div>
-  <!-- //banner -->
-  <!-- about -->
-  <section class="about py-lg-4 py-md-3 py-sm-3 py-3">
-    <div class="container py-lg-5 py-md-4 py-sm-4 py-3">
-      <div class="row">
-        <div class="col-lg-6 about-two-grids text-right">
-          <h5 class="top-title mb-3"> About us/关于我们</h5>
-          <h3 class="title">专注资源对接，专业搭软件定制，二次开发APP搭建，资金盘，球盘，元宇宙 NFT链游，质押流动性挖矿，MT5交易所，承接各类灰色产业搭建，代运维，出售源码</h3>
-          <div class="about-para-txt mt-lg-4 mt-md-4 mt-3">
-            <p>What We Provide the Best</p>
-          </div>
-          <div class="outs_more-buttn mt-lg-5 mt-md-4 mt-3">
-            <a href="blog.html">Read More</a>
-          </div>
-        </div>
-        <div class="col-lg-6 about-imgs-txt">
-          <div class="row">
-            <div class="col-lg-6 col-md-6 col-sm-6 text-center about-two-side">
-              <div class="about-wthree-grids ">
-                <div class="about-icon text-center color-one mb-lg-4 mb-md-3 mb-3">
-                  <span class="fa fa-ship" aria-hidden="true"></span>
+<!--主体-->
+ <div class="all-box">
+	 <div class="sub-bg pd-l-r-30">
+		<!--轮播-->
+		<div class="layui-carousel banner center" id="banner">
+			<div carousel-item="">
+								<div class="banner-item">
+					<!--<div class="web-site-box"><a href="/home/help/read/1.html.html" class="layui-btn layui-btn-sm layui-btn-danger">Official website</a></div>-->
+					<a href="#"><img src="static/picture/202110010850384436.jpg"></a>
+				</div>
+								<div class="banner-item">
+					<!---->
+					<a href="#"><img src="static/picture/202110010851461904.jpg"></a>
+				</div>
+								<div class="banner-item">
+					<!---->
+					<a href="#"><img src="static/picture/202110010853424343.jpg"></a>
+				</div>
+								<div class="banner-item">
+					<!---->
+					<a href="#"><img src="static/picture/202110010854131288.jpg"></a>
+				</div>
+							</div>
+		</div>
+		<!--公告-->
+		<div class="i-notice">
+			<ul>
+						<li class="layui-row">
+				<a class="layui-col-xs11" href="10.html">
+					<i class="mr-10"><img src="static/picture/notice.png"></i>
+					Material Bank, a logistics platform for sourcing architectural and design samples, raises $28M				</a>
+				<a class="layui-col-xs1 text-right" href="list.html"><i class="fa fa-bars"></i></a>
+			</li>
+						</ul>
+		</div>
+		<!--公告-->
+	</div>
+	<!-- Recharge -->
+	<div class="sub-bg pd-l-r-30 mt-15 layui-row recharge-ad">
+		<div class="layui-col-xs4">
+			<img src="static/picture/recharge_ad.png">
+		</div>
+		<div class="layui-col-xs5 text">
+			<span class="">Quick Recharge</span>
+		</div>
+		<div class="layui-col-xs3">
+			<a href="index2.html" type="button" class="layui-btn new-btn-yellow">Recharge</a>
+		</div>
+	</div>
+	<!--分类-->
+	<div class="sort sub-bg pd-l-r-30 pd-t-b-20">
+		<div class="layui-row layui-col-space10">
+			<div class="layui-col-xs3 layui-col-sm3 layui-col-md3">
+				<a href="2.html">
+				<div class="sort-bg">
+					<img src="static/picture/top_ico_01.jpg" alt="">
+				</div>
+				<span class="title">About</span>
+				</a>
+			</div>
+			<div class="layui-col-xs3 layui-col-sm3 layui-col-md3">
+				<a href="list.html">
+				<div class="sort-bg">
+					<img src="static/picture/top_ico_02.jpg" alt="">
+				</div>
+				<span class="title">News</span>
+				</a>
+			</div>
+			<div class="layui-col-xs3 layui-col-sm3 layui-col-md3">
+				<a href="index2.html">
+				<div class="sort-bg">
+					<img src="static/picture/top_ico_03.jpg" alt="">
+				</div>
+				<span class="title">Activity</span>
+				</a>
+			</div>
+			<div class="layui-col-xs3 layui-col-sm3 layui-col-md3">
+				<a href="index2.html">
+				<div class="sort-bg"><img src="static/picture/top_ico_04.jpg" alt=""></div>
+				<span class="title">Sign in</span>
+				</a>
+			</div>
+			<!--<div class="layui-col-xs3 layui-col-sm3 layui-col-md3">-->
+			<!--	<a href="/home/recharge/index.html">-->
+			<!--		<div class="sort-bg"><img src="/home/img/top_ico_05.png" alt=""></div>-->
+			<!--		<span class="title">Recharge</span>-->
+			<!--	</a>-->
+			<!--</div>-->
+			<!--<div class="layui-col-xs3 layui-col-sm3 layui-col-md3">-->
+			<!--	<a href="/home/market/index.html">-->
+			<!--		<div class="sort-bg"><img src="/home/img/top_ico_06.png" alt=""></div>-->
+			<!--		<span class="title">Market</span>-->
+			<!--	</a>-->
+			<!--</div>-->
+			<!--<div class="layui-col-xs3 layui-col-sm3 layui-col-md3">-->
+			<!--	<a href="/home/invitation/index.html">-->
+			<!--		<div class="sort-bg"><img src="/home/img/top_ico_07.png" alt=""></div>-->
+			<!--		<span class="title">Team</span>-->
+			<!--	</a>-->
+			<!--</div>-->
+			<!--<div class="layui-col-xs3 layui-col-sm3 layui-col-md3">-->
+			<!--	<a href="https://api.whatsapp.com/send?phone=+918142147548&text=Please describe your needs and I will help you.">-->
+			<!--		<div class="sort-bg"><img src="/home/img/top_ico_08.png" alt=""></div>-->
+			<!--		<span class="title">Service</span>-->
+			<!--	</a>-->
+			<!--</div>-->
+		</div>
+	</div>
+	<!-- Fund -->
+	<div class="sub-bg mt-15 pd-t-b-20 index-fund">
+		<h3><span>Product</span></h3>
+				<div class="index-fund-body pd-l-r-30">
+			<div class="goods-list mt-20">
+				<img src="static/picture/202110011139046969.jpg" class="img">
+			</div>
+			<div class="mt-20">
+				<p>(D) Manage Finances (30 Day)</p>
+				<div class="layui-progress mt-10">
+				  <div class="layui-progress-bar layui-bg-orange" lay-percent="85%"></div>
+				</div>
+				<div class="layui-row mt-20 center">
+					<!--<div class="layui-col-xs4">
+						<span>300000000</span>
+						<p class="mt-10 color-grey font-size-12">Total quota</p>
+					</div>-->
+					<div class="layui-col-xs4">
+						<span>3000</span>
+						<p class="mt-10 color-grey font-size-12">purchasing price</p>
+					</div>
+					<div class="layui-col-xs4">
+						<span>4.1%</span>
+						<p class="mt-10 color-grey font-size-12">Yield ratio</p>
+					</div>
+					<div class="layui-col-xs4">
+						<span>123</span>
+						<p class="mt-10 color-grey font-size-12">Daily income</p>
+					</div>
+				</div>
+			</div>
+			<div class="mt-30 full-btn">
+				<a href="index2.html" class="layui-btn new-btn-green">Buy</a>
+			</div>
+		</div>
+				<div class="index-fund-body pd-l-r-30">
+			<div class="goods-list mt-20">
+				<img src="static/picture/202110011140287228.jpg" class="img">
+			</div>
+			<div class="mt-20">
+				<p>(E) Manage Finances (60 Day)</p>
+				<div class="layui-progress mt-10">
+				  <div class="layui-progress-bar layui-bg-orange" lay-percent="70%"></div>
+				</div>
+				<div class="layui-row mt-20 center">
+					<!--<div class="layui-col-xs4">
+						<span>800000000</span>
+						<p class="mt-10 color-grey font-size-12">Total quota</p>
+					</div>-->
+					<div class="layui-col-xs4">
+						<span>5000</span>
+						<p class="mt-10 color-grey font-size-12">purchasing price</p>
+					</div>
+					<div class="layui-col-xs4">
+						<span>4%</span>
+						<p class="mt-10 color-grey font-size-12">Yield ratio</p>
+					</div>
+					<div class="layui-col-xs4">
+						<span>200</span>
+						<p class="mt-10 color-grey font-size-12">Daily income</p>
+					</div>
+				</div>
+			</div>
+			<div class="mt-30 full-btn">
+				<a href="index2.html" class="layui-btn new-btn-green">Buy</a>
+			</div>
+		</div>
+				<div class="index-fund-body pd-l-r-30">
+			<div class="goods-list mt-20">
+				<img src="static/picture/202110011145563767.jpg" class="img">
+			</div>
+			<div class="mt-20">
+				<p>(F) Manage Finances (180 Day)</p>
+				<div class="layui-progress mt-10">
+				  <div class="layui-progress-bar layui-bg-orange" lay-percent="60%"></div>
+				</div>
+				<div class="layui-row mt-20 center">
+					<!--<div class="layui-col-xs4">
+						<span>1600000000</span>
+						<p class="mt-10 color-grey font-size-12">Total quota</p>
+					</div>-->
+					<div class="layui-col-xs4">
+						<span>10000</span>
+						<p class="mt-10 color-grey font-size-12">purchasing price</p>
+					</div>
+					<div class="layui-col-xs4">
+						<span>3.8%</span>
+						<p class="mt-10 color-grey font-size-12">Yield ratio</p>
+					</div>
+					<div class="layui-col-xs4">
+						<span>380</span>
+						<p class="mt-10 color-grey font-size-12">Daily income</p>
+					</div>
+				</div>
+			</div>
+			<div class="mt-30 full-btn">
+				<a href="index2.html" class="layui-btn new-btn-green">Buy</a>
+			</div>
+		</div>
+			</div>
+ 
+ 
 
-                </div>
-                <h4>类目齐全</h4>
-              </div>
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-6 text-center gap-to-two about-two-side ">
-              <div class="about-wthree-grids">
-                <div class="about-icon text-center color-two mb-lg-4 mb-md-3 mb-3">
-                  <span class="fa fa-plane" aria-hidden="true"></span>
+</div>
+<!--底部-->
+<!--
+ * @Author: Fox Blue
+ * @Date: 2021-02-01 14:56:00
+ * @LastEditTime: 2021-09-26 09:21:12
+ * @Description: Forward, no stop
+-->
 
-                </div>
-                <h4>极速效率</h4>
-              </div>
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-6 text-center gap-to-two about-two-side">
-              <div class="about-wthree-grids ">
-                <div class="about-icon text-center color-three mb-lg-4 mb-md-3 mb-3">
-                  <span class="fa fa-cubes" aria-hidden="true"></span>
 
-                </div>
-                <h4>资深团队</h4>
-              </div>
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-6 text-center gap-to-top about-two-side ">
-              <div class="about-wthree-grids ">
-                <div class="about-icon text-center color-four mb-lg-4 mb-md-3 mb-3">
-                  <span class="fa fa-truck" aria-hidden="true"></span>
-                </div>
-                <h4>安全可靠</h4>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!--//about -->
-  <!-- service -->
-  <section class="service py-lg-4 py-md-3 py-sm-3 py-3">
-    <div class="container py-lg-5 py-md-4 py-sm-4 py-3">
-      <h5 class="top-title text-center mb-3">Business</h5>
-      <h3 class="title text-center mb-lg-5 mb-md-4 mb-sm-4 mb-3">我们的 <br>业务范围</h3>
-      <div class="row">
-        <div class="col-lg-3 col-md-6 col-sm-6 service-grid-wthree my-3">
-          <div class="ser-fashion-grid text-center">
-            <div class="service-icon color-two text-center mb-lg-4 mb-3">
-              <span class="fa fa-clock-o" aria-hidden="true"></span>
-            </div>
-            <div class="ser-sevice-grid mb-3">
-              <h4>及时交付</h4>
-            </div>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nibh urna Lorem ipsum dolor sit amet, consectetur</p>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-6 col-sm-6 service-grid-wthree my-3">
-          <div class="ser-fashion-grid text-center">
-            <div class="service-icon color-one text-center mb-lg-4 mb-3">
-              <span class="fa fa-truck" aria-hidden="true"></span>
-            </div>
-            <div class="ser-sevice-grid mb-3">
-              <h4>Land Transport</h4>
-            </div>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nibh urna Lorem ipsum dolor sit amet, consectetur</p>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-6 col-sm-6 service-grid-wthree my-3">
-          <div class="ser-fashion-grid text-center">
-            <div class="service-icon color-four text-center mb-lg-4 mb-3">
-              <span class="fa fa-ship" aria-hidden="true"></span>
-            </div>
-            <div class="ser-sevice-grid mb-3">
-              <h4>Sea Freight</h4>
-            </div>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nibh urna Lorem ipsum dolor sit amet, consectetur</p>
-          </div>
-
-        </div>
-        <div class="col-lg-3 col-md-6 col-sm-6 service-grid-wthree my-3">
-          <div class="ser-fashion-grid text-center">
-            <div class="service-icon color-three text-center mb-lg-4 mb-3">
-              <span class="fa fa-plane" aria-hidden="true"></span>
-            </div>
-            <div class="ser-sevice-grid mb-3">
-              <h4>Air Freights</h4>
-            </div>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nibh urna Lorem ipsum dolor sit amet, consectetur</p>
-          </div>
-        </div>
-      </div>
-      <div class="row mt-lg-4">
-        <div class="col-lg-3 col-md-6 col-sm-6 service-grid-wthree my-3">
-          <div class="ser-fashion-grid text-center">
-            <div class="service-icon color-four text-center mb-lg-4 mb-3">
-              <span class="fa fa-database" aria-hidden="true"></span>
-            </div>
-            <div class="ser-sevice-grid mb-3">
-              <h4>Packaging and Store</h4>
-            </div>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nibh urna Lorem ipsum dolor sit amet, consectetur</p>
-          </div>
-
-        </div>
-        <div class="col-lg-3 col-md-6 col-sm-6 service-grid-wthree my-3">
-          <div class="ser-fashion-grid text-center">
-            <div class="service-icon color-three text-center mb-lg-4 mb-3">
-              <span class="fa fa-check-square" aria-hidden="true"></span>
-            </div>
-            <div class="ser-sevice-grid mb-3">
-              <h4>Logistic Solutions</h4>
-            </div>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nibh urna Lorem ipsum dolor sit amet, consectetur</p>
-          </div>
-
-        </div>
-        <div class="col-lg-3 col-md-6 col-sm-6 service-grid-wthree my-3">
-          <div class="ser-fashion-grid text-center">
-            <div class="service-icon color-two text-center mb-lg-4 mb-3">
-              <span class="fa fa-cubes" aria-hidden="true"></span>
-            </div>
-            <div class="ser-sevice-grid mb-3">
-              <h4>Warehousing</h4>
-            </div>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nibh urna Lorem ipsum dolor sit amet, consectetur</p>
-          </div>
-
-        </div>
-        <div class="col-lg-3 col-md-6 col-sm-6 service-grid-wthree my-3">
-          <div class="ser-fashion-grid text-center">
-            <div class="service-icon color-one text-center mb-lg-4 mb-3">
-              <span class="fa fa-history" aria-hidden="true"></span>
-            </div>
-            <div class="ser-sevice-grid mb-3">
-              <h4>Quickest Cargo</h4>
-            </div>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nibh urna Lorem ipsum dolor sit amet, consectetur</p>
-          </div>
-
-        </div>
-      </div>
-    </div>
-  </section>
-  <!--//service -->
-  <!-- history -->
-  <section class="history">
-    <div class="container-fluid ">
-      <div class="row">
-        <div class="col-lg-6 col-md-6 history-w3layouts-grid">
-        </div>
-        <div class="col-lg-6 col-md-6 history-txt-data">
-          <h5>Transshipment yard for overseas cargo-routing routines</h5>
-
-          <p class="mt-lg-4 mt-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nibh urna Lorem ipsum dolor sit amet, consectetur
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nibh urna Lorem ipsum dolor sit amet, consectetur</p>
-          <p class="mt-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nibh urna Lorem ipsum dolor sit amet, consectetur
-            Lorem ipsum dolor
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!--//history -->
-  <!-- team -->
-  <section class="team py-lg-4 py-md-3 py-sm-3 py-3">
-    <div class="container py-lg-5 py-md-4 py-sm-4 py-3">
-      <h5 class="top-title text-center mb-3">Our Team</h5>
-      <h3 class="title text-center mb-lg-5 mb-md-4 mb-sm-4 mb-3">Our Expert Team Members</h3>
-      <div class="row">
-        <div class="col-lg-3 col-md-6 col-sm-6 cilent-item text-center my-3">
-          <div class="clients-ile-img">
-            <img src="images/t1.jpg" alt=" " class="img-fluid">
-            <div class="my-lg-4 my-3 clients-txt-ile">
-              <h4>Jack Will</h4>
-              <h6 class="mt-1">Manager</h6>
-            </div>
-            <p>Lorem ipsum dolor sit amet consectetur adipiscing elit</p>
-            <div class="outs_more-buttn mt-md-4 mt-3">
-              <a href="about.html">profile</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-6 col-sm-6 cilent-item text-center my-3">
-          <div class="clients-ile-img">
-            <img src="images/t2.jpg" alt=" " class="img-fluid">
-            <div class="my-lg-4 my-3 clients-txt-ile">
-              <h4>Simon Bond</h4>
-              <h6 class="mt-1">Delivery man</h6>
-            </div>
-            <p>Lorem ipsum dolor sit amet consectetur adipiscing elit</p>
-            <div class="outs_more-buttn mt-md-4 mt-3">
-              <a href="about.html">profile</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-6 col-sm-6 cilent-item text-center my-3">
-          <div class="clients-ile-img">
-            <img src="images/t3.jpg" alt=" " class="img-fluid">
-            <div class="my-lg-4 my-3 clients-txt-ile">
-              <h4>Lesley Carter</h4>
-              <h6 class="mt-1">Technician</h6>
-            </div>
-            <p>Lorem ipsum dolor sit amet consectetur adipiscing elit</p>
-            <div class="outs_more-buttn mt-md-4 mt-3">
-              <a href="about.html">profile</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-6 col-sm-6 cilent-item text-center my-3">
-          <div class="clients-ile-img">
-            <img src="images/t4.jpg" alt=" " class="img-fluid">
-            <div class="my-lg-4 my-3 clients-txt-ile">
-              <h4>Michael Smitch</h4>
-              <h6 class="mt-1">Director</h6>
-            </div>
-            <p>Lorem ipsum dolor sit amet consectetur adipiscing elit </p>
-            <div class="outs_more-buttn mt-md-4 mt-3">
-              <a href="about.html">profile</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!--//team -->
-  <!-- footer -->
-  <section class=" footer-sunone-txt py-lg-4 py-md-3 py-sm-3 py-3">
-    <div class="container py-lg-5 py-md-5 py-sm-4 py-3">
-      <div class="row">
-        <div class="col-lg-4 col-md-6 col-sm-6 footer-left-grid my-3">
-          <div class="footer-w3layouts-head">
-            <h2>
-              <a href="index.html">Cargoes</a>
-            </h2>
-          </div>
-          <div class="mb-2 pt-md-4 pt-3 footer-address">
-            <ul>
-              <li>
-                <h4>Address</h4>
-              </li>
-              <li>
-                <p>Melbourne st, QLD 4101,Australia</p>
-              </li>
-            </ul>
-          </div>
-          <div class="mb-2 footer-address">
-            <ul>
-              <li>
-                <h4>Email</h4>
-              </li>
-              <li>
-                <p>
-                  <a href="mailto:info@example.com">info@example1.com</a>
-                </p>
-              </li>
-            </ul>
-          </div>
-          <div class=" footer-address">
-            <ul>
-              <li>
-                <h4>Phone</h4>
-              </li>
-              <li>
-                <p>+(000) 123 4565 32</p>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-6 col-sm-6 text-center footer-sub-title my-3">
-          <h6 class="mb-lg-4 mb-3">Service Links</h6>
-          <ul class="bottom-menu">
-            <li class="pb-sm-2 pb-1">
-              <a href="service.html">Sea Freight</a>
-            </li>
-            <li class="py-sm-2 py-1">
-              <a href="service.html">Air Freights</a>
-            </li>
-            <li class="py-sm-2 py-1">
-              <a href="service.html">Land Transport</a>
-            </li>
-            <li class="py-sm-2 py-1">
-              <a href="service.html">Logistic Solutions</a>
-            </li>
-            <li class="py-sm-2 py-1">
-              <a href="service.html">Warehousing</a>
-            </li>
-          </ul>
-        </div>
-        <div class="footer-info-bottom col-lg-3 col-md-6 col-sm-6 footer-sub-title my-3">
-          <h6 class="mb-lg-4 mb-3">Newsletter</h6>
-          <div class="newsletter">
-            <form action="#" method="post" class="d-flex">
-              <input type="email" name="Your Email" class="form-control" placeholder="Your Email" required="">
-              <button class="btn1">
-                <span class="fa fa-envelope" aria-hidden="true"></span>
-              </button>
-            </form>
-          </div>
-          <div class="footer-office-hour mt-3">
-            <p>vehicula velit sagittis vehicula. Duis posuere ex in mollis iaculis. Suspendisse tincidunt velit sagittis vehicula</p>
-          </div>
-          <div class="social-icons mt-3">
-            <ul>
-              <li class="facebook">
-                <a href="#">
-                  <span class="fa fa-facebook"></span>
-                </a>
-              </li>
-              <li class="twitter">
-                <a href="#">
-                  <span class="fa fa-twitter"></span>
-                </a>
-              </li>
-              <li class="rss">
-                <a href="#">
-                  <span class="fa fa-rss"></span>
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div class="col-lg-2 col-md-6 col-sm-6 text-center footer-sub-title my-3">
-          <h6 class="mb-lg-4 mb-3">Quick links</h6>
-          <ul class="bottom-menu ">
-            <li class="pb-sm-2 pb-1">
-              <a href="index.html">Home</a>
-            </li>
-            <li class="py-sm-2 py-1">
-              <a href="about.html">About</a>
-            </li>
-            <li class="py-sm-2 py-1">
-              <a href="service.html">Service</a>
-            </li>
-            <li class="py-sm-2 py-1">
-              <a href="gallery.html">Gallery</a>
-            </li>
-            <li class="py-sm-2 py-1">
-              <a href="contact.html">Contact</a>
-            </li>
-          </ul>
-        </div>
-
-      </div>
-    </div>
-    <!-- move icon -->
-    <div class="text-center mt-md-4 mt-3">
-      <a href="#home" class="move-top text-center mt-3">
-        <span class="fa fa-arrow-up" aria-hidden="true"></span>
+<div class="footer">
+    <div class="tabs">
+      <a href="">
+        <img src="static/picture/home_ico_HL.png" alt="">
+        <p class="active">Home</p>
       </a>
     </div>
-    <!--//move icon -->
-  </section>
-  <!-- footer -->
-  <footer class="py-lg-4 py-3">
-    <div class="bottom-footer text-center">
-      <p>Copyright &copy; 2022.Company Yun Duan Da Jian All rights reserved.
+		<div class="tabs">
+		  <a href="index2.html">
+		    <img src="static/picture/fund_ico.png" alt="">
+		    <p>Product</p>
+		  </a>
+		</div>
+		<div class="tabs">
+			<a href="index2.html">
+				<img src="static/picture/market_ico.png" alt="">
+				<p>Market</p>
+			</a>
+		</div>    
+    <div class="tabs">
+      <a href="index2.html">
+      <img src="static/picture/myteam_ico.png" alt="">
+      <p>My team</p>
+    </a>
     </div>
-  </footer>
-</body>
+    <div class="tabs">
+      <a href="index2.html">
+        <img src="static/picture/my_ico.png" alt="">
+        <p>User</p>
+      </a>
+    </div>
+  </div>
+<!-- 客服 -->
+<div class="kefu-box">
+  <ul class="layui-fixbar" style="bottom: 75px;">
+    <li class="layui-icon layui-fixbar-top" onclick="chatapp();" style=""></li>
+  </ul>
+</div>
+<style>
+  .layui-fixbar li {
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    /*background: #e6b31c !important;*/
+    background: url(static/image/wsapp.gif);
+  }
+  .layui-fixbar .layui-fixbar-top {
+    display: block;
+    font-size: 0px;
+  }
+</style>
+<!--弹出菜单-->
+<!--
+ * @Author: Fox Blue
+ * @Date: 2021-02-01 14:54:12
+ * @LastEditTime: 2021-02-20 14:49:35
+ * @Description: Forward, no stop
+-->
+<script>
+    var langSec = "/home/index/setlang.html";
+</script>
+<!--
+ * @Author: Fox Blue
+ * @Date: 2021-02-01 21:53:20
+ * @LastEditTime: 2021-09-20 20:28:40
+ * @Description: Forward, no stop
+-->
+<div class="down-menu">
+    <div class="down-menu-box">
+      <a href="javascript:void(0);" onclick="changelang('en-us')" class="active">English</a>
+      <a href="javascript:void(0);" onclick="changelang('india-in')">हिन्दी</a>
+  </div>
+</div>
 
+<link rel="stylesheet" href="static/css/right.css" media="all">
+
+<div class="r-menu" id="memubox">
+    <div class="r-menu-box">
+      <div class="r-menu-header">
+                <div><a href="index1.html" type="button" class="layui-btn out-btn">Login</a></div>
+        <div><a href="register.html" type="button" class="layui-btn enter-btn">Register</a></div>
+              </div>
+      <div class="r-menu-body">
+        <div class="menu-li"><a href="index2.html"><i class="layui-icon layui-icon-component" style="font-size: 14px;color:#848e9c;margin-right: 10px;"></i>All Message</a></div>
+        <div class="menu-li"><a href="index2.html"><i class="layui-icon layui-icon-component" style="font-size: 14px;color:#848e9c;margin-right: 10px;"></i>To sign</a></div>
+        <div class="menu-li"><a href="index2.html"><i class="layui-icon layui-icon-component" style="font-size: 14px;color:#848e9c;margin-right: 10px;"></i>Activity Center</a></div>
+        <div class="menu-li"><a href="javascript:void(0);" onclick="selectLang();"><i class="fa fa-language" aria-hidden="true" style="font-size: 14px;color:#848e9c;margin-right: 10px;"></i>Choose language</a></div>
+              </div>
+    </div>
+  </div>
+
+<script src="static/js/layui.js"></script>
+<script src="static/js/all.js"></script>
+
+
+<script src="static/js/jquery-3.4.1.min.js" ></script>
+<script src="static/js/i5scroll.js"></script>
+<script src="static/js/jquery.cookies.js"></script>
+  <style>
+    .outbox img{width: 100%;}
+  </style>
+  <script>
+    function timer(opj){
+		$(opj).find('ul').animate({
+			marginTop : "-37px"
+			},500,function(){
+			$(this).css({marginTop : "0.01px"}).find("li:first").appendTo(this);
+		})
+	}
+	$(function(){
+		var num = $('.i-notice').find('li').length;
+		if(num > 1){
+			var time=setInterval('timer(".i-notice")',3500);
+			
+		}
+	});
+    $(document).ready(function(){
+      if($.cookie("homeClose") !== 'yes'){
+        $.post("/home/outbox/find.html",{type:'home'},function(res){
+          if(res){
+            layer.open({
+              type: 1
+              ,title: '' //不显示标题栏
+              ,area: ['85%', '85%']
+              ,shade: 0.8
+              ,id: 'LAY_layuipro' //设定一个id，防止重复弹出
+              ,skin: 'layui-layer-rim'
+              ,content: '<div class="outbox" style="padding:20px">'+res+'</div>'
+            });
+          }
+          //以天为单位
+          // $.cookie("homeClose",'yes',{ expires:1/8640});	//测试十秒
+          var expiresDate= new Date();
+          expiresDate.setTime(expiresDate.getTime() + (60*60*1000));
+          $.cookie("homeClose",'yes',{ expires:expiresDate});		//1小时
+          // $.cookie("homeClose",'yes',{ expires:1});		//一天
+        });
+      }
+    });
+  </script>
+
+</body>
 </html>

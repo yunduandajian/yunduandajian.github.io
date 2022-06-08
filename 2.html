@@ -1,0 +1,179 @@
+<!--
+ * @Author: Fox Blue
+ * @Date: 2021-01-27 15:07:40
+ * @LastEditTime: 2021-10-07 11:53:00
+ * @Description: Forward, no stop
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>News details--OCF Invest</title>
+  <!--
+ * @Author: Fox Blue
+ * @Date: 2021-01-27 16:26:31
+ * @LastEditTime: 2021-09-26 09:12:44
+ * @Description: Forward, no stop
+-->
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta http-equiv="Access-Control-Allow-Origin" content="*">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="format-detection" content="telephone=no">
+<link rel="icon" href="https://www.xyinves.com/favicon.ico">
+<link rel="stylesheet" href="static/css/layui.css" media="all">
+<link rel="stylesheet" href="static/css/style.css" media="all">
+<link rel="stylesheet" href="static/css/font-awesome.min.css" media="all">
+<meta name="csrf-token" content="ff2adc6041e766ecff168aeea507c702"><script>
+    var WHAT = "";   
+    var WHATFLAG = WHAT ==="true" ? true : false;
+    var WHATAPP = "https://api.whatsapp.com/send?phone=&text=Please describe your needs and I will help you.";
+</script>
+</head>
+<body>
+<!--顶部导航-->
+<!--
+ * @Author: Fox Blue
+ * @Date: 2021-02-01 15:05:54
+ * @LastEditTime: 2021-09-21 11:44:54
+ * @Description: Forward, no stop
+-->
+<div class="header">
+    <a class="logo" href="index.html">
+      <img src="static/picture/202110132218298963.jpg" alt="OCF Invest">
+    </a>
+    <div class="float-right">
+            <a href="index1.html" type="button" class="layui-btn layui-btn-radius btn-yellow mr-10">Log In</a>
+            <a href="javascript:;" id="memuright"><i class="layui-icon layui-icon-set"></i></a>
+    </div>
+  </div>
+<!--主体-->
+ <div class="all-box">
+    <!--头部信息-->
+		<div class="sub-bg pd-l-r-30 pd-b-30">
+			<a href="list.html"><img src="static/picture/return_ico.png" class="mb-5"></a>
+			<span class="font-size-18">News details</span>
+					</div>
+
+    <!--内容-->
+		<div class="pd-l-r-30 pd-t-b-20 mt-15">
+			<div class="center">
+				<h5>About OCF Investment</h5>
+				<p class="color-yellow mt-10">06 20,2018 12:00:00</p>
+				<hr class="hr-a mt-15">
+			</div>
+			<div class="news-text mt-15">
+				<p>We are one of the world’s leading private multi-asset alternative investment firms with approximately $140 billion in assets under management that creates lasting impact for our investors, teams, businesses and the communities in which we live. Founded in 1984, we pioneered a consulting-based approach to private equity investing, partnering closely with management teams to offer the insights that challenge conventional thinking, build great businesses and improve operations. Over time, we have organically expanded this approach across asset classes to build one of the strongest alternative asset platforms in the world.</p><p>Today,&nbsp;<a href="javascript:;">our teams</a>&nbsp;strive to create value through&nbsp;<a href="javascript:;">private equity, public equity, fixed income, credit, venture capital and real estate investments</a>&nbsp;across multiple sectors, industries, and geographies. We believe that our people and the shared values we’ve espoused since our founding remain the core of our competitive advantage. This has empowered us to deliver an enduring impact to a diverse group of investors including pensions, endowments, foundations and individuals.</p>			</div>	
+		</div>
+		
+  
+    
+</div>
+<!--底部-->
+<!--
+ * @Author: Fox Blue
+ * @Date: 2021-02-01 14:56:00
+ * @LastEditTime: 2021-09-26 09:21:12
+ * @Description: Forward, no stop
+-->
+
+
+<div class="footer">
+    <div class="tabs">
+      <a href="index.html">
+        <img src="static/picture/home_ico.png" alt="">
+        <p>Home</p>
+      </a>
+    </div>
+		<div class="tabs">
+		  <a href="index2.html">
+		    <img src="static/picture/fund_ico.png" alt="">
+		    <p>Product</p>
+		  </a>
+		</div>
+		<div class="tabs">
+			<a href="index2.html">
+				<img src="static/picture/market_ico.png" alt="">
+				<p>Market</p>
+			</a>
+		</div>    
+    <div class="tabs">
+      <a href="index2.html">
+      <img src="static/picture/myteam_ico.png" alt="">
+      <p>My team</p>
+    </a>
+    </div>
+    <div class="tabs">
+      <a href="index2.html">
+        <img src="static/picture/my_ico.png" alt="">
+        <p>User</p>
+      </a>
+    </div>
+  </div>
+<!-- 客服 -->
+<div class="kefu-box">
+  <ul class="layui-fixbar" style="bottom: 75px;">
+    <li class="layui-icon layui-fixbar-top" onclick="chatapp();" style=""></li>
+  </ul>
+</div>
+<style>
+  .layui-fixbar li {
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    /*background: #e6b31c !important;*/
+    background: url(static/image/wsapp.gif);
+  }
+  .layui-fixbar .layui-fixbar-top {
+    display: block;
+    font-size: 0px;
+  }
+</style>
+<!--弹出菜单-->
+<!--
+ * @Author: Fox Blue
+ * @Date: 2021-02-01 14:54:12
+ * @LastEditTime: 2021-02-20 14:49:35
+ * @Description: Forward, no stop
+-->
+<script>
+    var langSec = "/home/index/setlang.html";
+</script>
+<!--
+ * @Author: Fox Blue
+ * @Date: 2021-02-01 21:53:20
+ * @LastEditTime: 2021-09-20 20:28:40
+ * @Description: Forward, no stop
+-->
+<div class="down-menu">
+    <div class="down-menu-box">
+      <a href="javascript:void(0);" onclick="changelang('en-us')" class="active">English</a>
+      <a href="javascript:void(0);" onclick="changelang('india-in')">हिन्दी</a>
+  </div>
+</div>
+
+<link rel="stylesheet" href="static/css/right.css" media="all">
+
+<div class="r-menu" id="memubox">
+    <div class="r-menu-box">
+      <div class="r-menu-header">
+                <div><a href="index1.html" type="button" class="layui-btn out-btn">Login</a></div>
+        <div><a href="register.html" type="button" class="layui-btn enter-btn">Register</a></div>
+              </div>
+      <div class="r-menu-body">
+        <div class="menu-li"><a href="index2.html"><i class="layui-icon layui-icon-component" style="font-size: 14px;color:#848e9c;margin-right: 10px;"></i>All Message</a></div>
+        <div class="menu-li"><a href="index2.html"><i class="layui-icon layui-icon-component" style="font-size: 14px;color:#848e9c;margin-right: 10px;"></i>To sign</a></div>
+        <div class="menu-li"><a href="index2.html"><i class="layui-icon layui-icon-component" style="font-size: 14px;color:#848e9c;margin-right: 10px;"></i>Activity Center</a></div>
+        <div class="menu-li"><a href="javascript:void(0);" onclick="selectLang();"><i class="fa fa-language" aria-hidden="true" style="font-size: 14px;color:#848e9c;margin-right: 10px;"></i>Choose language</a></div>
+              </div>
+    </div>
+  </div>
+ 
+<script src="static/js/layui.js"></script>
+<script src="static/js/all.js"></script>
+
+
+
+</body>
+</html>
