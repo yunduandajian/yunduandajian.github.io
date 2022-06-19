@@ -1,128 +1,475 @@
 <!DOCTYPE html>
+<!--[if (gte IE 9)|!(IE)]><!-->
 <html lang="en">
+<!--<![endif]-->
+
 <head>
-    <meta charset="utf-8">
-    <title>哈希管理后台</title>
-    <meta name="renderer" content="webkit">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <link rel="stylesheet" href="static/css/layui.css" media="all">
-    <link rel="stylesheet" href="static/css/layuiAdmin.css" media="all">
-    <link rel="stylesheet" href="static/css/login.css" media="all">
-</head>
-<body>
-
-<div class="layadmin-user-login layadmin-user-display-show" id="LAY-user-login" style="display: none;">
-
-    <div class="layadmin-user-login-main">
-        <div class="layadmin-user-login-box layadmin-user-login-header">
-            <h2>哈希管理后台</h2>
-        </div>
-        <div class="layadmin-user-login-box layadmin-user-login-body layui-form">
-            <div class="layui-form-item">
-                <label class="layadmin-user-login-icon layui-icon layui-icon-username"></label>
-                <input type="text" id="username" name="username" lay-verify="required" placeholder="用户名" class="layui-input">
-            </div>
-            <div class="layui-form-item">
-                <label class="layadmin-user-login-icon layui-icon layui-icon-password"></label>
-                <input type="password" name="password" lay-verify="required" placeholder="密码" class="layui-input">
-            </div>
-            <div class="layui-form-item">
-                <div class="layui-row">
-                    <div class="layui-col-xs7">
-                        <label class="layadmin-user-login-icon layui-icon layui-icon-vercode"></label>
-                        <input type="text" name="captcha" lay-verify="" placeholder="验证码" class="layui-input">
-                    </div>
-                    <div class="layui-col-xs5">
-                        <div style="margin-left: 10px;">
-                            <img src="static/picture/captcha.html" alt="captcha" onclick="changeCaptcha(this)" id="captcha" width="100%">
-                            <!--<button class="layui-btn layui-btn-fluid" id="qr-btn" data-status="0">查看二维码</button>-->
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="layui-form-item" style="margin-bottom: 20px;">
-
-            </div>
-            <div class="layui-form-item">
-                <button class="layui-btn layui-btn-fluid" lay-submit="" lay-filter="LAY-user-login-submit">登 入</button>
-            </div>
-            <div class="layui-form-item">
-                <div style="margin-top: 10px;text-align: center;display:none;text-align: center;" id="qr-content">
-                    <img src="" id="qr-img" style="width: 200px;height: 200px;margin-top: 10px;">
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<script src="static/js/jquery-2.0.0.min.js"></script>
-<script src="static/js/layui.js"></script>
-
-<script>
-
-    layui.use(['layer', 'form', 'jquery'], function(){
-        var $ = layui.$;
-        var form = layui.form;
-        form.render();
-        //弹出谷歌验证码
-        $("#qr-btn").click(function () {
-            let _this = $(this);
-            if(_this.data("status") == 1){
-                return;
-            }
-            let username = $("#username").val();
-            if(username == ""){
-                layer.msg("请输入用户名", {anim: 6});
-                return false;
-            }
-            $.getJSON("/admin/login/qr",{username:username},function(res){
-                if(0 == res.code){
-                    $("#qr-content").show();
-                    $("#qr-img").prop("src",res.url);
-                    _this.data("status",1);
-                    layer.msg("剩余次数" + res.count, {anim: 6});
-                }else{
-                    layer.msg(res.msg, {anim: 6});
-                }
-            })
-
-        });
-
-        //提交
-        form.on('submit(LAY-user-login-submit)', function(obj){
-            $.ajax({
-                type: "post",
-                url:"/admin/login/index.html",
-                data:obj.field,
-                dataType:"json",
-                success:function(data){
-                    if( data.code == 1 ) {
-                        layer.msg('登入成功', {
-                            offset: '15px'
-                            ,icon: 1
-                            ,time: 1000
-                        }, function(){
-                            location.href = "/admin/index/index.html"; //后台主页
-                        });
-                    } else {
-                        layer.msg(data.msg);
-                        // changeCaptcha($('#captcha'))
-                        // $('input[name=captcha]').val('')
-                    }
-                },
-                error:function(data){
-                    alert(data);
-                }
-            });
-
-        });
-
-
-    });
-    function changeCaptcha(obj) {
-        $(obj).attr('src', $(obj).attr('src') + '?t=' + Math.random());
+  <!-- =====  BASIC PAGE NEEDS  ===== -->
+  <meta charset="utf-8">
+  <title>Home</title>
+  <!-- =====  SEO MATE  ===== -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <!-- =====  MOBILE SPECIFICATION  ===== -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="viewport" content="width=device-width">
+  <!-- =====  CSS  ===== -->
+  <link rel="stylesheet" type="text/css" href="static/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="static/css/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="static/css/menu.css">
+  <link rel="stylesheet" type="text/css" href="static/css/style.css">
+  <link rel="stylesheet" type="text/css" href="static/css/animation.css">
+  <link rel="stylesheet" type="text/css" href="static/css/owl.carousel.css">
+  <link rel="stylesheet" type="text/css" href="static/css/jquery.mb.ytplayer.min.css" media="all">
+  <style>
+    .qa_div div{
+      margin: 20px 0;
+      background-color: #f5f5f5;
+      border-radius: 10px;
+      padding: 5px 10px;
+      line-height: 25px;
+      font-size: 14px;
     }
-</script>
+  </style>
+</head>
+
+<body id="home2" class="home2">
+  <!-- =====  LODER  ===== -->
+  <div class="loder"></div>
+  <div class="wrapper">
+    <!-- =====  HEADER START  ===== -->
+    <header id="header">
+      <div class="header navbar">
+        <div class="container-fluid">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header pull-left"> 
+            <a class="navbar-brand" href="" style="padding-left: 12px;"> 
+              <img alt="Bitcoin" src="static/picture/logo.png" width="180px;"> 
+            </a> 
+         </div>
+          <!-- Collection of nav links, forms, and other content for toggling -->
+          <div id="navbarCollapse" class="navbar-collapse navbar-right">
+            <nav id="menu" class='collapse'>
+              <!-- Navigation Menu -->
+              <ul class="nav">
+                <li class="active"> <a href="#home2">转账地址</a></li>
+                <li> <a href="#about">中奖规则</a></li>
+                <li> <a href="#service">参与流程</a></li>
+                <li> <a href="#prices">派奖列表</a></li>
+                <li> <a href="#whyme">平台优势</a></li>
+                <!-- <li> <a href="#client">数字币兑换</a></li> -->
+                <li> <a href="#blogs">常见问题</a></li>
+                <!-- <li> <a href="#contact">相关软件下载</a></li> -->
+              </ul>
+              <!--End Navigation Menu -->
+            </nav>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- =====  HEADER END  ===== -->
+    <!-- =====  BANNER STRAT  ===== -->
+    <div class="banner">
+      <div id="particles-js"></div>
+      <div class="banner-detail ">
+        <div class="cd-intro">
+          <h1 class="cd-headline letters type">
+            <span class="cd-words-wrapper waiting">
+              <b class="is-visible">云端 N9哈希抽奖 数字货币抽奖平台</b>
+              <b>抢先体验!</b>
+            </span>
+           </h1>
+          <p class="mt_20 light">区块哈希值依托于去中心化的区块链网络随机生成，任何人随时随地都可以在区块链上查询，
+            <br>真正做到平台不可操控数据，所有记录透明有迹可查。我们捍卫每个人享有公平的权力</p>
+          <button class="custom-btn custom-btns light" type="button"><span>唯一转账地址：1111</span></button>
+          <div class="home-arrow-down"> <a href="#about" class="btn"><i class="fa fa-long-arrow-down"></i></a> </div>
+        </div>
+      </div>
+    </div>
+    <!-- =====  BANNER END  ===== -->
+    <!-- =====  ABOUT START  ===== -->
+    <section>
+      <div id="about" class="about ptb_100">
+        <div class="container">
+          <div class="about-inner ">
+            <div class="row">
+              <div class="col-md-5"></div>
+              <div class="col-md-7">
+                <div class="about-text ml_60">
+                  <div class="heading-part ">
+                    <h2 class="main_title about-heading mb_40 pb_20">云端 N9哈希抽奖，中奖规则</h2>
+                  </div>
+                  <h4 class="mb_20">转账后交易哈希值(Trade hash)最后的两位为“数字+字母”或“字母+数字”组合时，则成功中奖。</h4>
+                  <p>中奖后系统60秒内自动返还转账金额1.95倍的同种数字币(由于区块链技术为了保证资金安全，每笔交易都需记录，防篡改，且全球使用数字币人口庞大，故60秒转账后可能会出现些许延迟到账情况，敬请耐心等待)</p>
+                  <button class="custom-btn custom-btns mtb_20" type="button"><span><a href="javascript:window.open('http://www.baidu.com/');" target="__blank">不明白？联系客服</a></span></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- =====  ABOUT END  ===== -->
+    <!-- =====  WORK WITH US STRAT  ===== -->
+    <section class="text-center parallax" data-source-url="images/Parallax01.jpg">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8 col-md-offset-2 col-sm-12 ptb_100">
+            <div class="story_detail">
+              <h2 class="main_title light mb_20">中奖实例 </h2>
+              <h4 class="mtb_20 light"> <a class="light">ec46aae081ec68e63eb562dc40961200395dde00b67ad959dcacfd4edd7e0d<span style="color:red">a4<span></span></span></a></h4>
+              <p>该哈希地址末尾两位：a4 符合中奖规则中的 字母 + 数字的组合，所以该笔转账视为中奖，派奖一般会在中奖后1分钟内转到用户地址。注意查收</p>
+            </div>
+            <button class="custom-btn custom-btns light mt_20" type="button">
+                <a href="javascript:window.open('http://www.baidu.com/');" target="_blank">
+                    <span>查看更多</span>
+                </a>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- =====  WORK WITH US END  ===== -->
+    <!-- =====  SERVICES STRAT  ===== -->
+    <section id="service" class="pt_100 pb_50">
+      <div class="container text-center">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="heading-part ">
+              <h2 class="main_title mb_20">参与流程</h2>
+              <p class="mb_50">数字货币充值以及提取，请下载官方app，如果不确定是否为官方APP，请从下面链接下载，切勿相信通过聊天软件，以及第三方不知名网站接收的APP。</p>
+            </div>
+          </div>
+        </div>
+        <!-- Services  -->
+        <div class="row">
+          <div class="col-md-4 col-xs-6 mb_50">
+            <div class="service">
+              <div class="icon-top"><img src="static/picture/service-1.png" alt="#"></div>
+              <h4 class="mtb_20">注册数字币【去中心化】钱包</h4>
+              <p>目前市面上流通的比较大众的去中心化钱包有：ImToken，Wnbit，Tronlink，比特派</p>
+            </div>
+          </div>
+          <div class="col-md-4 col-xs-6 mb_50">
+            <div class="service">
+              <div class="icon-top"><img src="static/picture/service-2.png" alt="#"></div>
+              <h4 class="mtb_20">数字币交易所中购买TRX</h4>
+              <p>交易所中购买，请认准 trx，或者 usdt，usdt 可通过本平台 币币转换地址进行兑换</p>
+            </div>
+          </div>
+          <div class="col-md-4 col-xs-6 mb_50">
+            <div class="service">
+              <div class="icon-top"><img src="static/picture/service-3.png" alt="#"></div>
+              <h4 class="mtb_20">转账到平台地址参与抽奖</h4>
+              <p>转账成功之后会有一个交易哈希，通过该哈希后两位您可以自行判断是否中奖。</p>
+            </div>
+          </div>
+          <div class="col-md-4 col-xs-6 col-md-offset-4 mb_50">
+            <div class="service">
+              <div class="icon-top"><img src="static/picture/service-4.png" alt="#"></div>
+              <h4 class="mtb_20">等待派奖</h4>
+              <p>派奖周期一般在 40秒左右，全程程序执行，不涉及人为干预。</p>
+            </div>
+          </div>
+        </div>
+        <!-- Services -->
+      </div>
+    </section>
+    <!-- =====  SERVICES END  ===== -->
+    <!-- =====  PROGRESS START  ===== -->
+    <section class=" ptb_50 bg-dark">
+      <div class="container">
+        <!-- Progress Bar  -->
+        <div class="row">
+        </div>
+        <!--Progress Bar -->
+      </div>
+    </section>
+    <!-- =====  PROGRESS END  ===== -->
+    <!-- =====  PRICES START  ===== -->
+    <section id="prices" class="prices">
+      <div class="container">
+        <div class="heading-part text-center">
+          <h2 class="main_title mt_100 mb_20 wow fadeInUp" data-wow-delay=".2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">派奖列表</h2>
+          <p class="mb_50">派奖信息更新存在一定延迟和误差，一切以地址实际交易为准</p>
+        </div>
+        <div class="col-lg-12 col-md-12 col-sm-12">
+          <div class="table-responsive">
+          <table class="table table-striped table-hover text-left">
+            <thead>
+              <tr>
+                <th>交易哈希</th>
+                <th>派奖金额</th>
+                <th>中奖地址</th>
+                <th>派奖时间</th>
+                <th>使用币种</th>
+              </tr>
+            </thead>
+            <tbody>
+                                <tr>
+                    <td>12312312312312</td>
+                    <td>1.11</td>
+                    <td class="up">121231212413</td>
+                    <td>2022-03-16 11:18:47</td>
+                    <td>trx</td>
+                </tr>
+                                <tr>
+                    <td>12312312312312</td>
+                    <td>1.11</td>
+                    <td class="up">121231212413</td>
+                    <td>2022-03-16 11:18:47</td>
+                    <td>trx</td>
+                </tr>
+                                <tr>
+                    <td>12312312312312</td>
+                    <td>1.11</td>
+                    <td class="up">121231212413</td>
+                    <td>2022-03-16 11:18:47</td>
+                    <td>trx</td>
+                </tr>
+                                <tr>
+                    <td>12312312312312</td>
+                    <td>1.11</td>
+                    <td class="up">121231212413</td>
+                    <td>2022-03-16 11:18:47</td>
+                    <td>trx</td>
+                </tr>
+                                <tr>
+                    <td>12312312312312</td>
+                    <td>1.11</td>
+                    <td class="up">121231212413</td>
+                    <td>2022-03-16 11:18:47</td>
+                    <td>trx</td>
+                </tr>
+                                <tr>
+                    <td>12312312312312</td>
+                    <td>1.11</td>
+                    <td class="up">121231212413</td>
+                    <td>2022-03-16 11:18:47</td>
+                    <td>trx</td>
+                </tr>
+                                <tr>
+                    <td>12312312312312</td>
+                    <td>1.11</td>
+                    <td class="up">121231212413</td>
+                    <td>2022-03-16 11:18:47</td>
+                    <td>trx</td>
+                </tr>
+                            </tbody>
+          </table>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- =====  PRICES END  ===== -->
+    <!-- =====  HOW IT WORKS START  ===== -->
+    <section class="ptb_100" id="whyme">
+      <div class="container">
+        <div class="about-inner ">
+          <div class="row">
+            <div class="col-md-7">
+              <div class="steps-text mr_60">
+                <div class="heading-part ">
+                  <h2 class="main_title about-heading pb_20">为什么选择我们</h2>
+                </div>
+                <div class="row text-left ml_10 pt_50">
+                  <div class="feature-i-left">
+                    <div class="icon-right"><img src="static/picture/service-3.png" alt="#">
+                    </div>
+                    <h4 class="mb_10">公平透明</h4>
+                    <p>区块哈希值依托于去中心化的区块链网络随机生成，任何人随时随地都可以在区块链上查询，真正做到平台不可操控数据，所有记录透明有迹可查</p>
+                  </div>
+                </div>
+                <div class="row text-left ml_10 pt_50">
+                  <div class="feature-i-left">
+                    <div class="icon-right"><img src="static/picture/how-2.png" alt="#">
+                    </div>
+                    <h4 class="mb_10">安全可靠</h4>
+                    <p>我们致力保障客户信息财产安全，无需实名注册，无需绑定任何个人信息，无冻卡风险，无需充值存款，无需提款申请审核，无打款流水限制，平台资金池随时可查，无需担心平台资金断裂</p>
+                  </div>
+                </div>
+                <div class="row text-left ml_10 ptb_50">
+                  <div class="feature-i-left">
+                    <div class="icon-right"><img src="static/picture/how-3.png" alt="#">
+                    </div>
+                    <h4 class="mb_10">极简快速</h4>
+                    <p>我们追求极简流程／快速派彩，只需一个【去中心化】数字钱包，即刻参与抽奖，无任何玩法、策略、设备限制，随时随地随心所欲，中奖后10秒内自动到账，游戏不间断，体验酣畅淋漓</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-5">
+              <figure> <img src="static/picture/about-img.jpg" alt="#"> </figure>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- =====  HOW IT WORKS END  ===== -->
+    <!-- =====  TEAM START  ===== -->
+    <!-- =====  TEAM END  ===== -->
+    <!-- =====  CLIENT START  ===== -->
+    <!-- =====  CLIENT END  ===== -->
+    <!-- =====  BLOGS START  ===== -->
+    <!-- =====  BLOGS END  ===== -->
+    <!-- =====  WORK WITH US STRAT  ===== -->
+    <section class="text-center bg-dark">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8 col-md-offset-2 col-sm-12 ptb_100">
+            <div class="story_detail">
+              <h2 class="main_title light mb_20">钱包推荐<span class="red">?</span> </h2>
+              <h4 class="mtb_20 light"> 本平台推荐使用 imtoken 钱包，钱包下载地址：<a href="javascript:window.open('https://token.im/');" target="_blank" class="light">下载地址</a></h4>
+            </div>
+            <button class="custom-btn custom-btns light mt_20" type="button">
+                <a href="javascript:window.open('https://zhuanlan.zhihu.com/p/354617912');" target="_blank"><span>查看更多钱包</span></a>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- =====  WORK WITH US END  ===== -->
+    <!-- =====  CONTACT START  ===== -->
+    <section id="blogs" class="ptb_100">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 mb_20 col-md-offset-3 text-center">
+            <div class="heading-part ">
+              <h2 class="main_title mb_20">常见问题</h2>
+            </div>
+          </div>
+        </div>
+        <!-- contact  -->
+        <div class="row">
+          <div class="col-md-12 col-xs-12 contact-form qa_div">
+            <!-- Contact FORM -->
+                        <div>
+             Q1：什么是区块哈希值(Block hash)？<br>
+             区块哈希值是一段数据的DNA，每个区块哈希值都是唯一的、随机的且不可破解的。 点击查看百度百科哈希值介绍。
+            </div>
+                        <div>
+             Q2：什么是区块链？<br>
+             区块链从本质上讲，它是一个共享数据库，存储于其中的数据或信息。具有不可伪造、全程留痕、可以追溯、公开透明、集体维护等特征。点击查看百度百科区块链介绍。
+            </div>
+                        <div>
+             Q3：中心化钱包？去中心化钱包？为什么中心化钱包无法查询转账？<br>
+             举一个例子：您自己的钱包地址是A，您给地址E转入10个USDT，但您用交易哈希值去查询，只能查询到服务商随机某个账本地址B（或C或D等等）与E的转账。 同理E也无法得知这10个USDT是否是您转出的，因为E只能看见是账本地址B给他转入10个USDT。这就是为什么中心化钱包无法在区块链上查询真实转账信息。
+点击查看区块链钱包区别
+            </div>
+                        <div>
+             Q4：为什么我会连续中奖或不中奖？<br>
+             首先连续多次不中奖的是小概率事件（小概率事件定义），其次中奖与不中奖是随机事件，随机事件的发生的频率会趋于一个稳定值。 在非迭代的情况下，事物出现的概率对每个人来讲是相等的，这个情况下，每个人都是公平的。 同时随机事件会遵大数定律（在试验不变的条件下，重复试验多次，随机事件的频率近似于它的概率大数定律定义），在转账频次不断增加的情况下，中奖与不中奖的概率会趋于一个稳定值。 所以请您继续转账，随着转账频次增加则中奖总概率会提升。
+            </div>
+                        <div>
+             Q5：为什么会延迟到帐？<br>
+             由于区块链技术为了保证资金的安全性，会进行多次核算，比对，确认。所以计算速度较慢，但是贵在安全。
+              点击查看区块链的速度困境：《贵在信任，慢得其所》
+            </div>
+                        <div>
+             Q6：为什么转币时有那么多USDT的类型选项？我该选哪一个？<br>
+             全球有许多知名公链（点击查看全球知名公链简介）都支持进行USDT转账，而A8哈希是基于波场TRC20技术。 所以A8哈希的转账地址是属于USDT-TRC20， 您应该选择USDT-TRC20； 如果您选择了其他类型，幸运哈希则无法收到您的USDT，这会造成您和幸运哈希双方的损失。
+            </div>
+                        <div>
+             Q7：转币时转错地址或者选错币的类型，怎么办？是否还能找回？<br>
+             比如说您给我们转币时应该选择USDT-TRC20类型，但您选择了其他类型USDT-OMNI或者USDT-ERC20，那么就会出现丢币的情况，这种情况是无法找回的。 点击查看 如果转错币怎么办？
+            </div>
+                        
+            <!-- END Contact FORM -->
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- =====  CONTACT END  ===== -->
+    <!-- =====  FOOTER START  ===== -->
+    <div class="footer bg-dark ptb_100">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12">
+            <!-- <div class="footer-link">
+              <ul>
+                <li> <a href="#">Home</a></li>
+                <li> <a href="#">Service</a></li>
+                <li> <a href="#">Work</a></li>
+                <li> <a href="#">About</a></li>
+                <li> <a href="#">Team</a></li>
+                <li> <a href="#">Blogs</a></li>
+                <li> <a href="#">Testimonial</a></li>
+                <li> <a href="#">Contact</a></li>
+              </ul>
+            </div> -->
+            <div class="copyright-part mtb_10">
+                <a target="_blank" href="javascript:window.open('http://www.baidu.com/');"> 技术支持 </a></div>
+            <div class="social_icon">
+              <ul>
+                                    <li>
+                        <a href="javascript:window.open('https://www.baidu.com/');" title="telegram">
+                            <img src="" alt="" style="width: 20px;height:20px;">
+                        </a>
+                    </li>
+                                    <li>
+                        <a href="javascript:window.open('https://www.baidu.com/');" title="telegram">
+                            <img src="https://hash0.huir.cc/storage/images/face.png" alt="" style="width: 20px;height:20px;">
+                        </a>
+                    </li>
+                                    <li>
+                        <a href="javascript:window.open('https://www.baidu.com/');" title="telegram">
+                            <img src="https://bcb.smalldogecointrx.in/storage/images/face.png" alt="" style="width: 20px;height:20px;">
+                        </a>
+                    </li>
+                                    <li>
+                        <a href="javascript:window.open('https://www.baidu.com/');" title="telegram">
+                            <img src="https://bcb.smalldogecointrx.in/storage/images/face.png" alt="" style="width: 20px;height:20px;">
+                        </a>
+                    </li>
+                                    <li>
+                        <a href="javascript:window.open('https://www.baidu.com/');" title="telegram">
+                            <img src="" alt="" style="width: 20px;height:20px;">
+                        </a>
+                    </li>
+                              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- =====  FOOTER END  ===== -->
+  </div>
+  <!-- =====  WRAPPER END  ===== -->
+  <!-- =====  SCRIPT START  ===== -->
+  <script src="static/js/jQuery_v3.1.1.min.js"></script>
+  <script src="static/js/owl.carousel.min.js"></script>
+  <script src="static/js/bootstrap.min.js"></script>
+  <script src="static/js/letters-type.js"></script>
+  <script src="static/js/menu.js"></script>
+  <script src="static/js/custom.js"></script>
+  <script src="static/js/particles.js"></script>
+  <script src="static/js/app.js"></script>
+  <script src="static/js/circle-progress.js"></script>
+  <script src="static/js/circle-progress-examples.js"></script>
+  <!---<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAT3mI0RI16q19Oxv93gSxN0cF0wfxWN6w"></script>--->
+  <script src="static/js/parallax.js"></script>
+  <script src="static/js/jquery.easeScroll.js"></script>
+  <script type="text/javascript">
+  $("html").easeScroll();
+  // Add scrollspy to <body>
+  $('body').scrollspy({ target: '#menu' })
+  $("#menu ul li a[href^='#'], .home-arrow-down a").on('click', function(e) {
+    // prevent default anchor click behavior
+    e.preventDefault();
+    // store hash
+    var hash = this.hash;
+    // animate
+    $('html, body').animate({
+      scrollTop: $(hash).offset().top
+    }, 1500, function() {
+      // when done, add hash to url
+      // (default click behaviour)
+      window.location.hash = hash;
+    });
+  });
+  </script>
+  <!-- =====  SCRIPT END  ===== -->
 </body>
+
 </html>
